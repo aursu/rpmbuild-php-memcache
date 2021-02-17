@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  docker-rpmbuild: aursu/rpmbuild@1.1.0
+
+workflows:
+  memcachebuild:
+    jobs:
+      - docker-rpmbuild/build:
+          name: centos7memcache
+          build_service: centos7memcache
+          bintray-repo: php74custom
+          bintray_uploader: centos7bintray
+      - docker-rpmbuild/build:
+          name: centos8memcache
+          build_service: centos8memcache
+          bintray-repo: php74custom
+          bintray_uploader: centos8bintray
+      - docker-rpmbuild/build:
+          name: centos7memcachephp73
+          build_file: docker-compose.php73.yml
+          build_service: centos7memcachephp73
+          bintray-repo: php73custom
+          bintray_uploader: centos7bintray
+      - docker-rpmbuild/build:
+          name: centos8memcachephp73
+          build_file: docker-compose.php73.yml
+          build_service: centos8memcachephp73
+          bintray-repo: php73custom
+          bintray_uploader: centos8bintray
+      - docker-rpmbuild/build:
+          name: centos7memcachephp71
+          build_file: docker-compose.php71.yml
+          build_service: centos7memcachephp71
+          bintray-repo: php71custom
+          bintray_uploader: centos7bintray

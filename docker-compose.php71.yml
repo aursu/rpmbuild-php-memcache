@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  centos7memcachephp71:
+    volumes:
+      - rpms:/home/centos/rpmbuild/SRPMS
+      - rpm7:/home/centos/rpmbuild/RPMS
+    build:
+      context: .
+      args:
+        centos: $OS7
+        image: php-7.1
+
+volumes:
+  rpms:
+    name: rpms
+  rpm7:
+    name: rpm7
